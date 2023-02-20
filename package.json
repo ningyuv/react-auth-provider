@@ -1,0 +1,24 @@
+{
+  "name": "@ningyuv/react-auth-provider",
+  "version": "1.0.1",
+  "description": "A generic auth provider that can be used for auth control for react",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ningyuv/react-auth-provider.git"
+  },
+  "keywords": [
+    "react",
+    "auth"
+  ],
+  "author": "ningyuv",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/ningyuv/react-auth-provider/issues"
+  },
+  "homepage": "https://github.com/ningyuv/react-auth-provider#readme",
+  "dependencies": {
+    "@tanstack/react-query": "^4.14.1",
+    "react": "^18.2.0",
+    "react-router-dom": "^6.4.2"
+  }
+}
