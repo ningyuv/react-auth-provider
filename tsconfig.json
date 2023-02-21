@@ -1,0 +1,17 @@
+{
+    "compilerOptions": {
+        "outDir": "./dist",
+        "strict": true,
+        "esModuleInterop": true,
+        "declaration": true,
+        "allowJs": true,
+        "jsx": "react-jsx",
+    },
+    "include": [
+        "./src"
+    ],
+    "exclude": [
+        "./test",
+        "node_modules"
+    ]
+}

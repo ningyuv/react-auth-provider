@@ -1,6 +1,6 @@
 {
   "name": "@ningyuv/react-auth-provider",
-  "version": "1.0.1",
+  "version": "1.0.3",
   "description": "A generic auth provider that can be used for auth control for react",
   "repository": {
     "type": "git",
@@ -16,6 +16,13 @@
     "url": "https://github.com/ningyuv/react-auth-provider/issues"
   },
   "homepage": "https://github.com/ningyuv/react-auth-provider#readme",
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "files": ["./src", "./dist"],
+  "scripts": {
+    "prepublish": "npm run build",
+    "build": "rm -rf ./dist && tsc -p tsconfig.json"
+  },
   "dependencies": {
     "@tanstack/react-query": "^4.14.1",
     "react": "^18.2.0",
