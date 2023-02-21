@@ -1,6 +1,13 @@
 # react-auth-provider
 A generic auth provider that can be used for auth control, based on `react-router-dom v6` and `@tanstack/react-query v4`.
 
+# Features
+
+- get user data and auth status everywhere inside this provider.
+- automatic deal with login invalidation.
+- cache, background update, auto refresh and force refresh auth status (powered by `@tanstack/react-query`).
+- jump to login page when unauthed, jump to home page when authed (powered by `react-router-dom`).
+
 # Dependencies
 
 - react v18
@@ -116,4 +123,62 @@ function Profile() {
         <>{loggedIn ? <InnerProfile user={user} /> : 'not logged in.'}</>
     )
 }
+```
+
+# auto redirect decide by auth status
+## redirect to login page while unauthed
+### create your `PageRequireAuthed` component
+```tsx
+// PageRequireAuthed.tsx
+import { useAuth } from "./AppAuthProvider";
+
+const UserContext = createContext<User | undefined>(undefined)
+
+function PageRequireAuthed({ children }: {
+    children?: ReactNode
+}) {
+    return <RequireAuthed redirectUrl='/auth/login' context={UserContext} authState={useAuth()}>
+        {children}
+    </RequireAuthed>
+}
+
+export const useUser = () => useContext(UserContext)!
+
+export default PageRequireAuthed;
+```
+### use your component to protect page which should auth valid
+```tsx
+import { createBrowserRouter } from 'react-router-dom';
+
+// protect home page in react-router-dom
+const router = createBrowserRouter([
+    {
+        path: '/', element: <AppRequireAuthed>
+            <Home />
+        </AppRequireAuthed>,
+        children: [...]
+    }
+])
+```
+## redirect from login page to home page while user logged in
+### create your `PageRequireUnauthed` component
+```tsx
+import { useAuth } from "./AppAuthProvider"
+
+function PageRequireUnauthed({ children }: {
+    children?: ReactNode
+}) {
+    return <RequireUnauthed redirectUrl='/' authState={useAuth()}>
+        {children}
+    </RequireUnauthed>
+}
+
+export default PageRequireUnauthed;
+```
+### use your component to avoid repeated logins
+```tsx
+// in router declaration
+{ path: 'login', element: <AppRequireUnauthed>
+    <LoginPage />
+</AppRequireUnauthed> }
 ```
