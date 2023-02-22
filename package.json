@@ -1,6 +1,6 @@
 {
   "name": "@ningyuv/react-auth-provider",
-  "version": "1.0.5",
+  "version": "1.0.6",
   "description": "A generic auth provider that can be used for auth control for react",
   "repository": {
     "type": "git",
